@@ -152,7 +152,7 @@
             android:elevation="4dp"
             android:gravity="start"
             android:padding="12dp"
-            android:text="Possible Desies 🏥 "
+            android:text="Possible Diseases 🏥 "
             android:textColor="@color/black"
             android:textSize="12sp"
             android:textStyle="bold"

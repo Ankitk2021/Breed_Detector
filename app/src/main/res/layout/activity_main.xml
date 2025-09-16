@@ -12,17 +12,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
+        android:layout_height="match_parent">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="0.1dp"
-            android:paddingBottom="12dp"
             android:layout_marginTop="12dp"
             android:background="@color/white"
+            android:elevation="0.1dp"
+            android:paddingBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.043"
@@ -35,11 +34,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-12dp"
+                android:layout_marginTop="2dp"
                 android:minWidth="40dp"
                 android:minHeight="40dp"
                 android:src="@drawable/recent"
                 android:tooltipText="@string/recent"
-                android:layout_marginTop="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.043"
@@ -83,12 +82,12 @@
 
             <LinearLayout
                 android:id="@+id/branding_layout"
-                android:background="@drawable/app_name_bg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:layout_marginTop="50dp"
+                android:background="@drawable/app_name_bg"
                 android:gravity="center"
+                android:orientation="vertical"
                 android:visibility="visible">
 
                 <TextView
@@ -117,19 +116,21 @@
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/response_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="top"
                 android:layout_marginHorizontal="4dp"
-                android:visibility="visible"
-                android:orientation="vertical">
+                android:gravity="top"
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:paddingTop="4dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingTop="4dp">
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/responseList"
                         android:layout_width="match_parent"
@@ -152,7 +153,6 @@
             android:background="@drawable/container_bg"
             android:elevation="12dp"
             android:orientation="vertical"
-
             android:padding="16dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -179,40 +179,71 @@
                     android:src="@drawable/bhains" />
             </FrameLayout>
 
-<!--            <androidx.appcompat.widget.AppCompatSpinner-->
-<!--                android:id="@+id/cattleType_spinner"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:minHeight="48dp"-->
-<!--                android:padding="12dp"-->
-<!--                android:visibility="visible"-->
-<!--                android:layout_marginTop="12dp"-->
-<!--                android:backgroundTint="@color/teal_700"-->
+            <!--            <androidx.appcompat.widget.AppCompatSpinner-->
+            <!--                android:id="@+id/cattleType_spinner"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:minHeight="48dp"-->
+            <!--                android:padding="12dp"-->
+            <!--                android:visibility="visible"-->
+            <!--                android:layout_marginTop="12dp"-->
+            <!--                android:backgroundTint="@color/teal_700"-->
 
-<!--                android:textAllCaps="false"-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="18sp"-->
-<!--                android:fontFamily="@font/poppins_medium"-->
-<!--                app:cornerRadius="12dp"-->
-<!--                android:background="@drawable/container_bg"-->
-<!--                />-->
+            <!--                android:textAllCaps="false"-->
+            <!--                android:textColor="@android:color/black"-->
+            <!--                android:textSize="18sp"-->
+            <!--                android:fontFamily="@font/poppins_medium"-->
+            <!--                app:cornerRadius="12dp"-->
+            <!--                android:background="@drawable/container_bg"-->
+            <!--                />-->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/getResBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 android:layout_marginTop="12dp"
                 android:backgroundTint="@color/teal_700"
+                android:fontFamily="@font/poppins_medium"
                 android:text="Get Details"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
-                android:fontFamily="@font/poppins_medium"
+                android:visibility="visible"
                 app:cornerRadius="12dp"
                 app:icon="@drawable/right"
-                app:iconTint="@android:color/white"
                 app:iconPadding="8dp"
-                />
+                app:iconTint="@android:color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5">
+
+            <TextView
+
+                android:id="@+id/loadingTex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Please wait. Loading.... "
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -221,10 +252,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/home_fab_bg"
+            android:elevation="12dp"
             android:orientation="horizontal"
             android:paddingHorizontal="24dp"
             android:paddingVertical="18dp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -280,9 +311,9 @@
         android:layout_gravity="start"
         android:background="@drawable/border_bg"
         android:backgroundTint="@color/white"
+        android:gravity="top"
         android:hapticFeedbackEnabled="true"
         android:minHeight="800dp"
-        android:gravity="top"
 
         android:orientation="vertical">
 
@@ -295,32 +326,35 @@
             android:minHeight="80dp"
             android:orientation="vertical"
             android:paddingTop="12dp">
+
             <TextView
-                android:layout_marginTop="12dp"
                 android:id="@+id/recent_searches"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Recent Searches"
-
-                android:textColor="@color/black"
-                android:padding="12dp"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="sans-serif-condensed"
-                android:textAlignment="textStart" />
+
+                android:padding="12dp"
+                android:text="Recent Searches"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/history_placeholder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="46dp"
-                android:textColor="#7C8BA0"
                 android:text="Recent searches will appear here."
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#7C8BA0" />
+
             <ScrollView
                 android:layout_width="match_parent"
-                android:scrollbars="none"
+                android:layout_height="match_parent"
                 android:layout_marginTop="-82dp"
-                android:layout_height="match_parent">
+                android:scrollbars="none">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/historyList"
