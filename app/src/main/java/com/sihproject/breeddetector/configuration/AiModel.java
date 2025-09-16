@@ -3,6 +3,7 @@ package com.sihproject.breeddetector.configuration;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.Toast;
 
 import com.google.ai.client.generativeai.BuildConfig;
 import com.google.ai.client.generativeai.GenerativeModel;
@@ -10,6 +11,7 @@ import com.google.ai.client.generativeai.type.GenerateContentResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.sihproject.breeddetector.MainActivity;
 import com.sihproject.breeddetector.helper.AiCallback;
 import com.sihproject.breeddetector.helper.AiHelperKt;
 import com.sihproject.breeddetector.pojo.Breed;
@@ -80,7 +82,17 @@ public class AiModel {
                         }
 
                         new Handler(Looper.getMainLooper()).post(() -> {
-                            callback_interface.onSuccess(BreedList);
+                         if(!BreedList.isEmpty()){
+                             Breed b = BreedList.get(0);
+                             if(b.getName().equals("?") || b.getName().charAt(0)== '?'){
+                                 callback_interface.onFailure(b.getCattleDesc());
+                             }else {
+                                 callback_interface.onSuccess(BreedList);
+                             }
+                         }else {
+                             System.out.println(response.getText());
+                             callback_interface.onFailure(response.getText());
+                         }
                         });
 
                     } else {
@@ -98,7 +110,8 @@ public class AiModel {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 new Handler(Looper.getMainLooper()).post(() -> {
-                    callback_interface.onFailure(e.getMessage());
+                    System.out.println(e.getMessage());
+                    callback_interface.onFailure("AI Model is not responding properly. 🤖");
                 });
 
                 throw new RuntimeException(e);
@@ -107,7 +120,7 @@ public class AiModel {
             if (responseText == null) {
                 System.out.println("Empty");
             } else {
-                System.out.println("Response has been got");
+                System.out.println("Response has been got.");
             }
 
         });

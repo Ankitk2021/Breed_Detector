@@ -19,9 +19,9 @@ public class Prompt {
                         "Respond ONLY in this JSON format: " + format + ". " +
                         " return as [ ... ] JSON array. " +
                         "Act like a REST API, no conversation. " +
-                        "If unsure, return \"?your_error_msg\". " +
+                        "If unsure, return \" [ { BreedName : ? , cattleType : ? , accuracy : ? , cattleDesc : keep here the problem in image , food : ? , possibleDieses : ? , imageUrl : ? } ]\". " +
                         "Query: " + query + ". " +
-                        "Accuracy must be between 1-100 and imageUrl must be valid.";
+                        "Accuracy must be between 1-100 and imageUrl must be valid.If possible give multiple data of formate.";
 
         System.out.println("Your Prompt : " + prompt);
         return prompt;

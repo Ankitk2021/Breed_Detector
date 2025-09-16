@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        TextView loadingText = findViewById(R.id.loadingTex);
         ImageView cameraLogo = findViewById(R.id.camera);
         DrawerLayout drawerLayout = findViewById(R.id.main);
         ImageView gallery = findViewById(R.id.gallery);
@@ -85,15 +85,14 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView history_recyler_view = findViewById(R.id.historyList);
         LinearLayout branding_layout = findViewById(R.id.branding_layout);
         LinearLayout response_layout = findViewById(R.id.response_layout);
-       // AppCompatSpinner cattle_select_spinner = findViewById(R.id.cattleType_spinner);
-
+        // AppCompatSpinner cattle_select_spinner = findViewById(R.id.cattleType_spinner);
 
 
 //        ArrayList<String> cattleType_list = SpinnerHelper.getSpinnerList();
 //        ArrayAdapter<String> spinner_adapter = SpinnerHelper.getAdapter(this, android.R.layout.simple_list_item_1, cattleType_list);
 //        cattle_select_spinner.setAdapter(spinner_adapter);
 
-        HistoryAdapter historyAdapter = new HistoryAdapter(historyList,this);
+        HistoryAdapter historyAdapter = new HistoryAdapter(historyList, this);
 
         AiCallback callback_interface = new AiCallback() {
 
@@ -102,15 +101,17 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(ArrayList<Breed> breeds) {
                 historyList.add(breeds.get(0));
 
-                RecyclerAdapter adapter = new RecyclerAdapter(breeds, MainActivity.this,bitmap);
+                RecyclerAdapter adapter = new RecyclerAdapter(breeds, MainActivity.this, bitmap);
                 responseList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                 responseList.setAdapter(adapter);
-
+                loadingText.setTextSize(20);
                 historyAdapter.notifyDataSetChanged();
-                if(historyList.isEmpty()){
+                if (historyList.isEmpty()) {
+                    loadingText.setText("Something went wrong. ☹️ Please try again later.");
                     history_placeholder.setVisibility(VISIBLE);
                     history_recyler_view.setVisibility(GONE);
-                }else{
+                } else {
+                    loadingText.setVisibility(GONE);
                     history_placeholder.setVisibility(GONE);
                     history_recyler_view.setVisibility(VISIBLE);
                 }
@@ -119,10 +120,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(String e) {
                 Toast.makeText(MainActivity.this, e, Toast.LENGTH_SHORT).show();
-                if(historyList.isEmpty()){
+
+                loadingText.setText(e);
+                loadingText.setTextSize(10);
+                loadingText.setBackgroundResource(R.drawable.error_bg);
+                if (historyList.isEmpty()) {
                     history_placeholder.setVisibility(VISIBLE);
                     history_recyler_view.setVisibility(GONE);
-                }else{
+                } else {
                     history_placeholder.setVisibility(GONE);
                     history_recyler_view.setVisibility(VISIBLE);
                 }
@@ -168,13 +173,14 @@ public class MainActivity extends AppCompatActivity {
                         comingImgPrev.setImageURI(selectedImageUri);
                         comingImgPrev.setVisibility(VISIBLE);
                         cameraLogo.setImageResource(R.drawable.camera);
-                       // getResponse.setVisibility(GONE);
+                        loadingText.setVisibility(GONE);
+                        // getResponse.setVisibility(GONE);
                         //cattle_select_spinner.setVisibility(VISIBLE);
-
-                        if(historyList.isEmpty()){
+                        responseList.setVisibility(GONE);
+                        if (historyList.isEmpty()) {
                             history_placeholder.setVisibility(VISIBLE);
                             history_recyler_view.setVisibility(GONE);
-                        }else{
+                        } else {
                             history_placeholder.setVisibility(GONE);
                             history_recyler_view.setVisibility(VISIBLE);
                         }
@@ -192,16 +198,20 @@ public class MainActivity extends AppCompatActivity {
                 fabBtn.setVisibility(GONE);
                 comingImgPrev.setImageURI(selectedImageUri);
                 comingImgPrev.setVisibility(VISIBLE);
-              //  getResponse.setVisibility(GONE);
+                //  getResponse.setVisibility(GONE);
                 //cattle_select_spinner.setVisibility(VISIBLE);
                 cameraLogo.setImageResource(R.drawable.retake);
+                responseList.setVisibility(GONE);
+                loadingText.setVisibility(GONE);
 
-                if(historyList.isEmpty()){
+                if (historyList.isEmpty()) {
                     history_placeholder.setVisibility(VISIBLE);
                     history_recyler_view.setVisibility(GONE);
-                }else{
+
+                } else {
                     history_placeholder.setVisibility(GONE);
                     history_recyler_view.setVisibility(VISIBLE);
+
                 }
             }
         });
@@ -228,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
         profile.setOnClickListener(v -> {
-
+                    Toast.makeText(this, "The app is in prototype stage; The profile displayed is a mock and does not represent real data", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(MainActivity.this, profile.class);
                     startActivity(intent);
                 }
@@ -248,23 +258,25 @@ public class MainActivity extends AppCompatActivity {
             fabBtn.setVisibility(VISIBLE);
             branding_layout.setVisibility(GONE);
             home_main_container.setVisibility(VISIBLE);
+            BreedList.clear();
             response_layout.setVisibility(VISIBLE);
             Camera_Galley_Container.setVisibility(GONE);
             responseList.setVisibility(VISIBLE);
 
-            BreedList.clear();
 
+            loadingText.setVisibility(VISIBLE);
+            loadingText.setTextSize(20);
+            loadingText.setText("Please wait. Loading....");
 
             System.out.println("Recycler view has been shown.");
-
 
 
             try {
                 if (selectedImageUri != null) {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
 
-                    if(bitmap != null){
-                        AiModel.getTextResponse(bitmap,option, BreedList, callback_interface);
+                    if (bitmap != null) {
+                        AiModel.getTextResponse(bitmap, option, BreedList, callback_interface);
                     }
                 }
             } catch (Exception e) {
@@ -272,10 +284,10 @@ public class MainActivity extends AppCompatActivity {
                 throw new RuntimeException(e);
             }
 
-            if(historyList.isEmpty()){
+            if (historyList.isEmpty()) {
                 history_placeholder.setVisibility(VISIBLE);
                 history_recyler_view.setVisibility(GONE);
-            }else{
+            } else {
                 history_placeholder.setVisibility(GONE);
                 history_recyler_view.setVisibility(VISIBLE);
             }
