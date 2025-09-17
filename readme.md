@@ -23,13 +23,30 @@ Breed Detector is an Android application designed to identify the breed of cattl
 
 ## Screenshots
 
-*(Consider adding screenshots of your app's main screens here)*
 
-*   *Main Screen / Branding*
-*   *Image Selection (Camera/Gallery options)*
-*   *Image Preview and "Get Details" Screen*
-*   *Results Display*
-*   *Search History*
+
+*   **Main Screen / Branding**
+
+    <img src="https://github.com/user-attachments/assets/f0a748d9-a424-4784-a68e-64de75bc4db7" width="250">
+
+*   **Image Selection (Gallery options)**
+
+    <img src="https://github.com/user-attachments/assets/75fb93b8-469d-411c-8700-5910b236debf" width="250">
+
+*   **Image Preview and "Get Details" Screen**
+
+    <img src="https://github.com/user-attachments/assets/6dbfa021-dd79-434b-9a5f-2eda57e6897b" width="250">
+
+*   **Results Display**
+
+    <img src="https://github.com/user-attachments/assets/733d7a51-f4d6-42cf-a7c4-29d9a7448d2a" width="200">
+
+    <img src="https://github.com/user-attachments/assets/b77d9359-1de2-4423-9051-b0268b4bb1a9" width="200">
+
+*   **Search History**
+
+    <img src="https://github.com/user-attachments/assets/4fe422a4-ff67-4639-b058-b3e09085f96b" width="200">
+
 
 ## Tech Stack & Dependencies 📚🧑‍💻
 
