@@ -16,6 +16,7 @@ suspend fun testAi(bitmap: Bitmap,prompt: String): GenerateContentResponse {
      val input  = content { image(bitmap)
                             text(prompt)}
      val res  : GenerateContentResponse = model.generateContent(input)
+
     return  res;
 
 }

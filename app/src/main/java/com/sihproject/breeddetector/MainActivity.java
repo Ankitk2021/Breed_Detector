@@ -267,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
             loadingText.setVisibility(VISIBLE);
             loadingText.setTextSize(20);
             loadingText.setText("Please wait. Loading....");
+            loadingText.setBackgroundResource(android.R.color.transparent);
 
             System.out.println("Recycler view has been shown.");
 
@@ -281,7 +282,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             } catch (Exception e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                throw new RuntimeException(e);
+
+               // throw new RuntimeException(e);
             }
 
             if (historyList.isEmpty()) {

@@ -242,6 +242,7 @@
                 android:text="Please wait. Loading.... "
                 android:textAlignment="center"
                 android:textColor="@color/black"
+                android:background="@android:color/transparent"
                 android:textSize="20sp"
                 android:visibility="gone" />
 
